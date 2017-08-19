@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="entity.Role" >
+    <id column="rid" property="rid" jdbcType="BIGINT" />
+    <result column="roleCode" property="rolecode" jdbcType="VARCHAR" />
+    <result column="roleName" property="rolename" jdbcType="VARCHAR" />
+    <result column="rcreatedBy" property="rcreatedby" jdbcType="BIGINT" />
+    <result column="rcreationDate" property="rcreationdate" jdbcType="TIMESTAMP" />
+    <result column="rmodifyBy" property="rmodifyby" jdbcType="BIGINT" />
+    <result column="rmodifyDate" property="rmodifydate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rid, roleCode, roleName, rcreatedBy, rcreationDate, rmodifyBy, rmodifyDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from smbms_role
+    where rid = #{rid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from smbms_role
+    where rid = #{rid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="entity.Role" >
+    insert into smbms_role (rid, roleCode, roleName, 
+      rcreatedBy, rcreationDate, rmodifyBy, 
+      rmodifyDate)
+    values (#{rid,jdbcType=BIGINT}, #{rolecode,jdbcType=VARCHAR}, #{rolename,jdbcType=VARCHAR}, 
+      #{rcreatedby,jdbcType=BIGINT}, #{rcreationdate,jdbcType=TIMESTAMP}, #{rmodifyby,jdbcType=BIGINT}, 
+      #{rmodifydate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.Role" >
+    insert into smbms_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="rolecode != null" >
+        roleCode,
+      </if>
+      <if test="rolename != null" >
+        roleName,
+      </if>
+      <if test="rcreatedby != null" >
+        rcreatedBy,
+      </if>
+      <if test="rcreationdate != null" >
+        rcreationDate,
+      </if>
+      <if test="rmodifyby != null" >
+        rmodifyBy,
+      </if>
+      <if test="rmodifydate != null" >
+        rmodifyDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=BIGINT},
+      </if>
+      <if test="rolecode != null" >
+        #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rcreatedby != null" >
+        #{rcreatedby,jdbcType=BIGINT},
+      </if>
+      <if test="rcreationdate != null" >
+        #{rcreationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rmodifyby != null" >
+        #{rmodifyby,jdbcType=BIGINT},
+      </if>
+      <if test="rmodifydate != null" >
+        #{rmodifydate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.Role" >
+    update smbms_role
+    <set >
+      <if test="rolecode != null" >
+        roleCode = #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="rolename != null" >
+        roleName = #{rolename,jdbcType=VARCHAR},
+      </if>
+      <if test="rcreatedby != null" >
+        rcreatedBy = #{rcreatedby,jdbcType=BIGINT},
+      </if>
+      <if test="rcreationdate != null" >
+        rcreationDate = #{rcreationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rmodifyby != null" >
+        rmodifyBy = #{rmodifyby,jdbcType=BIGINT},
+      </if>
+      <if test="rmodifydate != null" >
+        rmodifyDate = #{rmodifydate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rid = #{rid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.Role" >
+    update smbms_role
+    set roleCode = #{rolecode,jdbcType=VARCHAR},
+      roleName = #{rolename,jdbcType=VARCHAR},
+      rcreatedBy = #{rcreatedby,jdbcType=BIGINT},
+      rcreationDate = #{rcreationdate,jdbcType=TIMESTAMP},
+      rmodifyBy = #{rmodifyby,jdbcType=BIGINT},
+      rmodifyDate = #{rmodifydate,jdbcType=TIMESTAMP}
+    where rid = #{rid,jdbcType=BIGINT}
+  </update>
+</mapper>
